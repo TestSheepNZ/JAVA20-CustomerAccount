@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
-
-public class customerAccountClass {
+public class CustomerAccountClass {
 
 	
 	//Attributes
@@ -32,23 +32,23 @@ public class customerAccountClass {
 	private String password;
 	
 	//List of those with admin rights
-	private ArrayList<String> adminStaff;
+	private List<String> adminStaff;
 
 	//A whole list of audit events
-	private ArrayList<auditEvent> auditEvents;
+	private List<AuditEvent> auditEvents;
 	
 	// Constructor - need to have a userName & password & date of birth to start with
-	public customerAccountClass (String user, String initialPassword, String DOB )
+	public CustomerAccountClass (String user, String initialPassword, String DOB )
 	{
 		userName = user;
 		dateOfBirth = DOB;
 		password = initialPassword;
 		
 		adminStaff = new ArrayList<String>();
-		auditEvents = new ArrayList<auditEvent>();
+		auditEvents = new ArrayList<AuditEvent>();
 		
 		//Add creation audit event
-		auditEvent audit = new auditEvent(userName, userName, "Account created","", "");
+		AuditEvent audit = new AuditEvent(userName, userName, "Account created","", "");
 		auditEvents.add(0, audit);
 		
 		//This is a hack for now, but add some user admin accounts
@@ -71,7 +71,7 @@ public class customerAccountClass {
 	{
 		System.out.println("Access denied!");
 		
-		auditEvent newEvent = new auditEvent(requestUser, userName, 
+		AuditEvent newEvent = new AuditEvent(requestUser, userName, 
 				"Access denied - someone attempted to add "+action, "", "");
 		auditEvents.add(newEvent);
 	}
@@ -83,7 +83,7 @@ public class customerAccountClass {
 		{
 			String oldName = fullName;
 			fullName = newName;
-			auditEvent newEvent = new auditEvent(requestFromUser, userName, 
+			AuditEvent newEvent = new AuditEvent(requestFromUser, userName, 
 					"Üpdated user name", oldName, newName);
 			auditEvents.add(newEvent);
 			return true;
@@ -101,7 +101,7 @@ public class customerAccountClass {
 		{
 			String oldAddress = mailAddress;;
 			mailAddress = newAddress;
-			auditEvent newEvent = new auditEvent(requestFromUser, userName, 
+			AuditEvent newEvent = new AuditEvent(requestFromUser, userName, 
 					"Üpdated mail address", oldAddress, newAddress);
 			auditEvents.add(newEvent);
 			return true;
@@ -119,7 +119,7 @@ public class customerAccountClass {
 		{
 			String oldEmail = email;
 			email = newEmail;
-			auditEvent newEvent = new auditEvent(requestFromUser, userName, 
+			AuditEvent newEvent = new AuditEvent(requestFromUser, userName, 
 					"Üpdated email address", oldEmail, newEmail);
 			auditEvents.add(newEvent);
 			return true;
@@ -137,7 +137,7 @@ public class customerAccountClass {
 		{
 			String oldPhoneNumber = phoneNumber;;
 			phoneNumber = newPhoneNumber;
-			auditEvent newEvent = new auditEvent(requestFromUser, userName, 
+			AuditEvent newEvent = new AuditEvent(requestFromUser, userName, 
 					"Üpdated email address", oldPhoneNumber, newPhoneNumber);
 			auditEvents.add(newEvent);
 			return true;
@@ -156,7 +156,7 @@ public class customerAccountClass {
 		if (userName == requestFromUser )
 		{
 			password = newPassword;
-			auditEvent newEvent = new auditEvent(requestFromUser, userName, 
+			AuditEvent newEvent = new AuditEvent(requestFromUser, userName, 
 					"User updated password", "", "");
 			auditEvents.add(newEvent);
 			return true;
@@ -182,7 +182,7 @@ public class customerAccountClass {
 			
 			System.out.println("");
 			System.out.println("EVENTS");
-			for(auditEvent event:auditEvents)
+			for(AuditEvent event:auditEvents)
 			{
 				event.printAuditEvent();
 			}

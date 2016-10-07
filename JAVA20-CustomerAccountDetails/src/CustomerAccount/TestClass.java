@@ -16,12 +16,12 @@ package CustomerAccount;
 import org.junit.Test;
 
 
-public class testClass {
+public class TestClass {
 
 	@Test
 	public void addBasicUserAndPrint()
 	{	
-		customerAccountClass newCustomer = new customerAccountClass("bazzer01", "initPassword", "01/01/1970");
+		CustomerAccountClass newCustomer = new CustomerAccountClass("bazzer01", "initPassword", "01/01/1970");
 		
 		newCustomer.setNewName("bazzer01", "Barry Stanley Middleton");
 		

@@ -12,7 +12,7 @@ package CustomerAccount;
  * Mike Talks, Sept 2016
  */
 
-public class auditEvent {
+public class AuditEvent {
 
 	//Attributes
 	private String description;
@@ -22,7 +22,7 @@ public class auditEvent {
 	private String previousValue;
 	private String newValue;
 	
-	public auditEvent (String changedByUser, String user, 
+	public AuditEvent (String changedByUser, String user, 
 			String details, String previous, String update)
 	{
 		userName = user;
